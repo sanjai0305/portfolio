@@ -20,17 +20,22 @@ function Hero() {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+    // 'pt-32' added to ensure Navbar doesn't cover content on mobile.
+    // 'pb-20' ensures there's room before the next section.
+    <section id="home" className="relative min-h-screen flex items-center justify-center px-6 pt-32 pb-20 overflow-hidden bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
       
-      {/* Subtle Background Glow Effects - Opacity adjusts based on theme */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/10 dark:bg-purple-500/20 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-20 right-10 w-72 h-72 bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-[100px] pointer-events-none" />
+      {/* 🟢 Ambient Background Glows - Fills up the empty space visually */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-[-5%] left-[-10%] w-[80%] h-[35%] bg-purple-500/10 dark:bg-purple-500/20 rounded-full blur-[100px]" />
+        <div className="absolute bottom-[10%] right-[-10%] w-[80%] h-[35%] bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-[100px]" />
+      </div>
 
+      {/* 🟢 'flex-col-reverse' is the fix for your mobile whitespace issue */}
       <div className="max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-12 w-full z-10">
         
         {/* LEFT TEXT CONTENT */}
         <motion.div
-          className="flex-1 text-center md:text-left mt-10 md:mt-0"
+          className="flex-1 text-center md:text-left mt-8 md:mt-0"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -62,46 +67,43 @@ function Hero() {
             />
           </motion.div>
 
-          <motion.p variants={itemVariants} className="text-slate-600 dark:text-slate-400 max-w-lg mx-auto md:mx-0 mb-8 leading-relaxed">
+          <motion.p variants={itemVariants} className="text-slate-600 dark:text-slate-400 max-w-lg mx-auto md:mx-0 mb-8 leading-relaxed text-base md:text-lg">
             Building scalable web apps, intelligent systems, and deploying using modern DevOps practices. Let's build something amazing together.
           </motion.p>
 
-          {/* UPGRADED ACTION BUTTONS (Theme Responsive) */}
-          <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-10">
-            
-            {/* View Resume - Primary Gradient stays mostly the same */}
+          {/* ACTION BUTTONS - Optimized for mobile tap targets */}
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 mb-10">
             <a
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-purple-500 dark:to-blue-500 text-white px-7 py-3.5 rounded-xl font-semibold hover:shadow-[0_0_20px_rgba(99,102,241,0.4)] dark:hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:-translate-y-1 transition-all duration-300"
+              className="w-full sm:w-auto group flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-purple-500 dark:to-blue-500 text-white px-7 py-3.5 rounded-xl font-semibold hover:shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:-translate-y-1 transition-all duration-300 active:scale-95"
             >
               <FileText className="w-5 h-5" />
               View Resume
             </a>
 
-            {/* Download Resume - Outline adapts to theme */}
-            <a
-              href="/resume.pdf"
-              download
-              className="group flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white hover:-translate-y-1 transition-all duration-300"
-            >
-              <Download className="w-5 h-5 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
-              Download
-            </a>
+            <div className="flex gap-4 w-full sm:w-auto">
+              <a
+                href="/resume.pdf"
+                download
+                className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 hover:-translate-y-1 transition-all duration-300 active:scale-95"
+              >
+                <Download className="w-5 h-5" />
+                Download
+              </a>
 
-            {/* View Projects - Glassmorphism adapts to theme */}
-            <a
-              href="#projects"
-              className="group flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-slate-800 dark:text-white bg-slate-200/50 dark:bg-white/5 border border-slate-300 dark:border-white/10 hover:bg-slate-200 dark:hover:bg-white/10 hover:-translate-y-1 transition-all duration-300"
-            >
-              Projects
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </a>
-
+              <a
+                href="#projects"
+                className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-slate-800 dark:text-white bg-slate-200/50 dark:bg-white/5 border border-slate-300 dark:border-white/10 hover:bg-slate-200 dark:hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 active:scale-95"
+              >
+                Projects
+                <ArrowRight className="w-5 h-5" />
+              </a>
+            </div>
           </motion.div>
 
-          {/* SOCIAL LINKS (Theme Responsive) */}
+          {/* SOCIAL LINKS */}
           <motion.div variants={itemVariants} className="flex items-center justify-center md:justify-start gap-5">
             {[
               { icon: <Github className="w-5 h-5" />, link: "https://github.com/sanjai0305" },
@@ -121,7 +123,7 @@ function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* RIGHT IMAGE */}
+        {/* RIGHT IMAGE - Mobile-la ithu top-la varum (fixes whitespace) */}
         <motion.div
           className="flex-1 flex justify-center md:justify-end"
           initial={{ opacity: 0, scale: 0.8 }}
@@ -129,13 +131,16 @@ function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-tr from-blue-500 to-purple-500 rounded-full blur-2xl opacity-30 dark:opacity-40 animate-pulse" />
+            {/* Pulsating glow for visual depth */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-500 to-purple-500 rounded-full blur-2xl opacity-20 dark:opacity-40 animate-pulse" />
+            
             <motion.img
               src={profile}
               alt="Sanjai R"
               animate={{ y: [-10, 10, -10] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-[6px] border-white dark:border-slate-900 shadow-xl dark:shadow-2xl z-10 bg-slate-100 dark:bg-slate-800"
+              // Responsive sizes: 56 on small mobile, 64 on medium, 80 on desktop
+              className="relative w-56 h-56 sm:w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-[6px] border-white dark:border-slate-800 shadow-xl dark:shadow-2xl z-10 bg-slate-100 dark:bg-slate-800"
             />
           </div>
         </motion.div>
