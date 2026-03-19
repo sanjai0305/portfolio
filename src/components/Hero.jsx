@@ -2,11 +2,13 @@ import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { ArrowRight, Download, Github, Linkedin, Mail, FileText, Volume2, Square } from 'lucide-react';
+
 import profile from '../assets/profile.png';
 import ParticleNetwork from './ParticleNetwork';
+// 🟢 1. IMPORT YOUR RESUME PDF HERE
+import resumePDF from '../assets/resume.pdf'; 
 
 function Hero() {
-  // 🟢 Audio State Management
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
 
@@ -33,11 +35,10 @@ function Hero() {
     <section id="home" className="relative min-h-screen flex items-center justify-center px-6 pt-32 pb-20 overflow-hidden bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
       
       {/* Hidden Audio Element */}
-      {/* Ensure you put an 'intro.mp3' file inside your 'public' folder! */}
       <audio 
         ref={audioRef} 
         src="/intro.mp3" 
-        onEnded={() => setIsPlaying(false)} // Resets button when audio finishes
+        onEnded={() => setIsPlaying(false)}
       />
 
       <ParticleNetwork />
@@ -91,7 +92,6 @@ function Hero() {
             {/* ACTION BUTTONS */}
             <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-10">
               
-              {/* 🟢 THE NEW VOICE INTRO BUTTON */}
               <button
                 onClick={toggleAudio}
                 className={`w-full sm:w-auto group flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold transition-all duration-300 active:scale-95 border
@@ -113,8 +113,9 @@ function Hero() {
                 )}
               </button>
 
+              {/* 🟢 2. USE THE IMPORTED VARIABLE (resumePDF) HERE */}
               <a
-                href="/resume.pdf"
+                href={resumePDF}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto group flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-purple-500 dark:to-blue-500 text-white px-7 py-3.5 rounded-xl font-semibold hover:shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:-translate-y-1 transition-all duration-300 active:scale-95"
