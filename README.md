@@ -1,16 +1,61 @@
-# React + Vite
+🚀 Professional AI/ML & DevOps Portfolio
+Hi! I'm Sanjai R, a Full Stack Developer, AI/ML Engineer, and DevOps enthusiast. This is my personal portfolio website, designed to showcase my projects, technical skills, and professional journey with a high-end, animated tech aesthetic.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+✨ Key Features
+Minimalist & Premium UI: Built with a focus on typography, spacing, and atmospheric lighting (no distracting grid patterns).
 
-Currently, two official plugins are available:
+Interactive Terminal Mode: A unique CLI-inspired view for developers who love the command line.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Animated Journey Map: A visual timeline of my professional growth and milestones.
 
-## React Compiler
+Smart AI Assistant: A custom-built chatbot trained on my professional background.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Certificate Gallery: A full-screen, high-performance lightbox gallery for my credentials.
 
-## Expanding the ESLint configuration
+Fully Responsive: Optimized for all screen sizes from mobile to ultra-wide monitors.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Theme Management: Seamless Light and Dark mode transition.
+
+🚀 Tech Stack
+React.js
+
+Tailwind CSS
+
+Vite
+
+Framer Motion (High-performance Animations)
+
+Lucide React (Modern Iconography)
+
+🛠️ Tools Used
+VS Code
+
+GitHub
+
+Vercel (Live Hosting)
+
+Google Gemini (AI Collaboration for logic and design)
+
+💻 Installation & Setup
+Clone the repository:
+
+Bash
+git clone https://github.com/sanjai0305/my-portfolio.git
+Navigate into the directory:
+
+Bash
+cd my-portfolio
+Install dependencies:
+
+Bash
+npm install
+Run in development mode:
+
+Bash
+npm run dev
+📧 Contact
+LinkedIn: sanjai0426
+
+GitHub: sanjai0305
+
+Email: sanjaim0940r@gmail.com
