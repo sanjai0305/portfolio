@@ -1,110 +1,139 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { MessageSquare, X, Send, Bot, User, Sparkles } from 'lucide-react';
 
-const AIChatbot = () => {
+// 🟢 STEP 1: Knowledge Base - Ithu thaan unga AI-oda 'Moolai'
+const SANJAI_DATA = {
+  intro: "Hi! I'm Sanjai's AI Assistant. I can tell you about his projects, skills, and experience. What would you like to know?",
+  skills: "Sanjai is a pro in Full Stack (React, Node.js), AI/ML (Python, Scikit-Learn, NLP), and DevOps (Docker, CI/CD).",
+  projects: "His top projects are: 1. Quiz Management System (MERN), 2. CrowdGuard AI (Computer Vision), and 3. Sentiment Analysis (NLP).",
+  contact: "You can reach Sanjai at sanjaim0940r@gmail.com or find him on LinkedIn as 'sanjai0426'.",
+  experience: "Sanjai has a strong roadmap moving from AI/ML foundations towards becoming a DevSecOps Architect.",
+  default: "That's interesting! I'm specifically trained on Sanjai's professional background. Try asking about his 'skills', 'projects', or 'contact'!"
+};
+
+function AIChatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { text: "Hi! I'm an AI assistant. Ask me anything about Sanjai! Try asking: 'Who is Sanjai?', 'skills', or 'projects'.", sender: 'ai' }
+    { role: 'bot', text: SANJAI_DATA.intro }
   ]);
-  const [input, setInput] = useState('');
-  const messagesEndRef = useRef(null);
+  const [input, setInput] = useState("");
+  const scrollRef = useRef(null);
 
-  // Auto-scroll to the latest message
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
+  // Auto-scroll to bottom when new message arrives
   useEffect(() => {
-    scrollToBottom();
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  // 🟢 STEP 2: Smart Response Logic
+  const getBotResponse = (userText) => {
+    const text = userText.toLowerCase();
+    if (text.includes("skill") || text.includes("know")) return SANJAI_DATA.skills;
+    if (text.includes("project") || text.includes("build")) return SANJAI_DATA.projects;
+    if (text.includes("contact") || text.includes("email") || text.includes("call")) return SANJAI_DATA.contact;
+    if (text.includes("experience") || text.includes("work")) return SANJAI_DATA.experience;
+    return SANJAI_DATA.default;
+  };
 
   const handleSend = () => {
     if (!input.trim()) return;
 
-    // Add user message
-    const userMsg = { text: input, sender: 'user' };
-    setMessages((prev) => [...prev, userMsg]);
-    const currentInput = input.toLowerCase();
-    setInput('');
-
-    // Simulate AI thinking delay
+    const userMessage = { role: 'user', text: input };
+    setMessages(prev => [...prev, userMessage]);
+    
+    // Simulate "Bot is thinking"
     setTimeout(() => {
-      let aiResponse = "I'm still learning! Try asking about Sanjai's 'skills', 'projects', or 'experience'.";
-
-      // Dynamic Responses
-      if (currentInput.includes('who is')) {
-        aiResponse = "Sanjai is a passionate developer who builds smart web applications and innovative software solutions!";
-      } else if (currentInput.includes('skill') || currentInput.includes('tech')) {
-        aiResponse = "Sanjai is skilled in React, JavaScript, Python, Tailwind CSS, and integrating AI features into modern UIs.";
-      } else if (currentInput.includes('project')) {
-        aiResponse = "Sanjai has worked on some amazing projects, including a Smart Attendance system using Python and face recognition, an AI Smart Campus Assistant, and a Smart Crowd Management dashboard!";
-      } else if (currentInput.includes('experience') || currentInput.includes('work')) {
-        aiResponse = "Sanjai has experience building technical projects for hackathons and is geared towards roles in development, logistics, and order management.";
-      } else if (currentInput.includes('hi') || currentInput.includes('hello')) {
-        aiResponse = "Hello there! What would you like to know about Sanjai today?";
-      }
-
-      setMessages((prev) => [...prev, { text: aiResponse, sender: 'ai' }]);
+      const botMessage = { role: 'bot', text: getBotResponse(input) };
+      setMessages(prev => [...prev, botMessage]);
     }, 600);
+
+    setInput("");
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
-      {/* Chat Window */}
-      {isOpen && (
-        <div className="mb-4 w-80 sm:w-96 bg-gray-900 border border-gray-700 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300">
-          
-          {/* Header */}
-          <div className="bg-blue-600 p-4 flex justify-between items-center text-white">
-            <h3 className="font-semibold flex items-center gap-2">
-              <span className="text-xl">🤖</span> Ask AI about Sanjai
-            </h3>
-            <button onClick={() => setIsOpen(false)} className="hover:text-gray-300 text-2xl leading-none">
-              &times;
-            </button>
-          </div>
-
-          {/* Chat Messages */}
-          <div className="p-4 h-64 overflow-y-auto flex flex-col gap-3 bg-gray-800 text-sm">
-            {messages.map((msg, idx) => (
-              <div key={idx} className={`max-w-[80%] p-3 rounded-lg ${msg.sender === 'user' ? 'bg-blue-500 text-white self-end rounded-br-none' : 'bg-gray-700 text-gray-100 self-start rounded-bl-none'}`}>
-                {msg.text}
+    <div className="fixed bottom-6 right-6 z-[1000]">
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.8, rotate: -5 }}
+            animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
+            exit={{ opacity: 0, y: 50, scale: 0.8 }}
+            className="mb-4 w-[350px] sm:w-[400px] h-[500px] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl flex flex-col overflow-hidden backdrop-blur-xl"
+          >
+            {/* Header */}
+            <div className="p-5 bg-gradient-to-r from-blue-600 to-purple-600 text-white flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-white/20 rounded-lg">
+                  <Bot className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-sm">Sanjai's AI</h3>
+                  <p className="text-[10px] opacity-80 flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" /> Online
+                  </p>
+                </div>
               </div>
-            ))}
-            <div ref={messagesEndRef} />
-          </div>
+              <button onClick={() => setIsOpen(false)} className="p-1 hover:bg-white/10 rounded-full transition-colors">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
 
-          {/* Input Area */}
-          <div className="p-3 bg-gray-900 border-t border-gray-700 flex gap-2">
-            <input
-              type="text"
-              className="flex-1 bg-gray-800 text-white rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700"
-              placeholder="Ask a question..."
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-            />
-            <button 
-              onClick={handleSend}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
-            >
-              Send
-            </button>
-          </div>
-        </div>
-      )}
+            {/* Chat Area */}
+            <div className="flex-1 overflow-y-auto p-5 space-y-4 custom-scrollbar">
+              {messages.map((msg, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: msg.role === 'bot' ? -10 : 10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className={`flex ${msg.role === 'bot' ? 'justify-start' : 'justify-end'}`}
+                >
+                  <div className={`max-w-[80%] p-3.5 rounded-2xl text-sm leading-relaxed ${
+                    msg.role === 'bot' 
+                    ? 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-tl-none' 
+                    : 'bg-blue-600 text-white rounded-tr-none shadow-lg'
+                  }`}>
+                    {msg.text}
+                  </div>
+                </motion.div>
+              ))}
+              <div ref={scrollRef} />
+            </div>
 
-      {/* Floating Button */}
-      {!isOpen && (
-        <button
-          onClick={() => setIsOpen(true)}
-          className="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg flex items-center gap-2 transition-transform hover:scale-105 animate-bounce"
-        >
-          <span className="text-2xl">✨</span> 
-          <span className="font-semibold pr-2">Ask AI</span>
-        </button>
-      )}
+            {/* Input Area */}
+            <div className="p-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
+              <div className="relative flex items-center">
+                <input 
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                  placeholder="Ask about Sanjai..."
+                  className="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl py-3 pl-4 pr-12 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all dark:text-white"
+                />
+                <button 
+                  onClick={handleSend}
+                  className="absolute right-2 p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  <Send className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Floating Toggle Button */}
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-16 h-16 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white shadow-xl shadow-blue-500/20 relative group"
+      >
+        <div className="absolute inset-0 rounded-full bg-blue-500 animate-ping opacity-20 group-hover:hidden" />
+        {isOpen ? <X className="w-7 h-7" /> : <Sparkles className="w-7 h-7" />}
+      </motion.button>
     </div>
   );
-};
+}
 
 export default AIChatbot;

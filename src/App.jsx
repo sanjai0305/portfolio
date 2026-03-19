@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
-// import WhyHireMe from "./components/WhyHireMe"; // Uncomment if you saved the WhyHireMe component!
+import WhyHireMe from "./components/WhyHireMe"; 
 import Skills from "./components/Skills";
-import Timeline from "./components/Timeline"; // Replace with JourneyMap if you used that version
+import JourneyMap from "./components/JourneyMap"; 
 import Projects from "./components/Projects";
 import GithubProjects from "./components/GithubProjects";
 import Certifications from "./components/Certifications";
@@ -12,22 +12,32 @@ import SkillGame from "./components/SkillGame";
 import Contact from "./components/Contact";
 import ContactForm from "./components/ContactForm";
 import Terminal from "./components/Terminal";
-import AIChatbot from './components/AIChatbot'; // 🟢 Chatbot is back!
+import AIChatbot from './components/AIChatbot';
+// 🟢 NEW: Importing icons for the sleek toggle button
+import { Terminal as TerminalIcon, LayoutTemplate } from 'lucide-react'; 
 
 function App() {
-  // State to toggle between standard portfolio and terminal mode
   const [isTerminalMode, setIsTerminalMode] = useState(false);
 
   return (
-    // Upgraded to support Light/Dark mode transitions globally
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 font-sans antialiased selection:bg-blue-200 dark:selection:bg-blue-500/30 selection:text-blue-900 dark:selection:text-blue-200 scroll-smooth flex flex-col relative transition-colors duration-300">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 font-sans antialiased selection:bg-blue-200 dark:selection:bg-blue-500/30 selection:text-blue-900 dark:selection:text-blue-200 scroll-smooth flex flex-col relative transition-colors duration-500">
       
-      {/* Mode Toggle Button - Adapts to Light/Dark Mode */}
+      {/* 🟢 UPGRADED: Sleek Floating Terminal Toggle (Moved to Bottom-Left) */}
       <button 
         onClick={() => setIsTerminalMode(!isTerminalMode)}
-        className="fixed z-[100] top-4 right-16 md:top-6 md:right-6 px-4 py-2 bg-white/80 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-blue-600/20 border border-slate-200 dark:border-slate-700 hover:border-blue-400 dark:hover:border-blue-500/50 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-mono text-sm rounded-xl backdrop-blur-md transition-all duration-300 shadow-lg"
+        className="fixed z-[200] bottom-6 left-6 group flex items-center gap-2.5 px-5 py-3.5 bg-slate-900 dark:bg-white backdrop-blur-xl border border-slate-700 dark:border-slate-200 text-white dark:text-slate-900 rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300"
       >
-        {isTerminalMode ? '🖥️ UI Mode' : '>_ Terminal'}
+        {isTerminalMode ? (
+          <>
+            <LayoutTemplate className="w-5 h-5 text-blue-400 dark:text-blue-600 group-hover:animate-pulse" />
+            <span className="font-semibold text-sm tracking-wide">UI Mode</span>
+          </>
+        ) : (
+          <>
+            <TerminalIcon className="w-5 h-5 text-emerald-400 dark:text-emerald-600 group-hover:animate-pulse" />
+            <span className="font-mono font-bold text-sm tracking-tight">Terminal</span>
+          </>
+        )}
       </button>
 
       {isTerminalMode ? (
@@ -38,40 +48,37 @@ function App() {
       ) : (
         /* --- STANDARD UI MODE VIEW --- */
         <>
-          {/* Global Background Glow - Changes subtly based on theme */}
-          <div className="fixed inset-0 z-[-1] bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(59,130,246,0.1),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))] pointer-events-none transition-colors duration-300"></div>
+          <div className="fixed inset-0 z-[-1] bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(59,130,246,0.05),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.1),rgba(255,255,255,0))] pointer-events-none transition-colors duration-500"></div>
 
           <Navbar />
           
           <main className="flex-grow w-full">
             <Hero />
             <About />
-            {/* <WhyHireMe /> */} 
+            <WhyHireMe /> 
             <Skills />
-            <Timeline />
+            <JourneyMap /> 
             <Projects />
             <GithubProjects />
             <Certifications />
             <SkillGame />
             
-            {/* Contact section grouping */}
-            <div className="bg-slate-100/50 dark:bg-slate-900/50 py-10 transition-colors duration-300">
+            <div className="bg-slate-100/50 dark:bg-slate-900/40 py-10 transition-colors duration-500 border-t border-slate-200 dark:border-slate-800/50">
               <Contact />
               <ContactForm />
             </div>
           </main>
 
-          {/* Sleek Built-in Footer */}
-          <footer className="py-8 px-6 text-center border-t border-slate-200 dark:border-white/5 bg-white/50 dark:bg-slate-950/50 backdrop-blur-sm mt-auto transition-colors duration-300">
-            <p className="text-slate-500 text-sm font-medium">
+          <footer className="py-8 px-6 text-center border-t border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-950/80 backdrop-blur-md mt-auto transition-colors duration-500">
+            <p className="text-slate-500 dark:text-slate-400 text-sm font-medium">
               © {new Date().getFullYear()} Sanjai R. All rights reserved.
             </p>
-            <p className="text-slate-600 dark:text-slate-400 text-xs mt-2 flex items-center justify-center gap-1.5">
+            <p className="text-slate-500 dark:text-slate-500 text-xs mt-2 flex items-center justify-center gap-1.5">
               Built with <span className="text-blue-500 animate-pulse">♥</span> using React & Tailwind CSS
             </p>
           </footer>
           
-          {/* 🟢 Floating Global Components */}
+          {/* Smart Floating AI Assistant (Sits at Bottom-Right) */}
           <AIChatbot />
         </>
       )}

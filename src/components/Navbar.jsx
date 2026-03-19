@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Infinity } from 'lucide-react'; // 🟢 Added Infinity icon
 import ThemeToggle from './ThemeToggle'; // Ensure this matches your file path
 
 function Navbar() {
@@ -15,15 +15,20 @@ function Navbar() {
 
   return (
     // Responsive background: white/80 for light mode, slate-900/80 for dark mode
-    <nav className="fixed w-full top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-white/10 transition-all duration-300">
+    <nav className="fixed w-full top-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800/50 transition-all duration-500">
       <div className="max-w-6xl mx-auto flex justify-between items-center p-4 px-6">
         
-        {/* Logo */}
+        {/* 🟢 UPGRADED LOGO: Name with DevOps Infinity Icon */}
         <a 
           href="#home" 
-          className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-500 tracking-wide hover:opacity-80 transition-opacity"
+          className="flex items-center gap-2.5 group transition-opacity"
         >
-          Sanjai
+          <div className="p-1.5 bg-blue-50 dark:bg-blue-500/10 rounded-xl border border-blue-100 dark:border-blue-500/20 group-hover:bg-blue-100 dark:group-hover:bg-blue-500/20 transition-colors">
+            <Infinity className="w-6 h-6 text-blue-600 dark:text-blue-400 group-hover:rotate-180 transition-transform duration-700 ease-in-out" />
+          </div>
+          <span className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 tracking-wide">
+            Sanjai
+          </span>
         </a>
 
         {/* DESKTOP NAVIGATION */}
@@ -42,11 +47,11 @@ function Navbar() {
           </ul>
           
           {/* Action Buttons: Theme Toggle + Hire Me */}
-          <div className="flex items-center gap-4 pl-4 border-l border-slate-200 dark:border-white/10">
+          <div className="flex items-center gap-4 pl-4 border-l border-slate-200 dark:border-slate-700">
             <ThemeToggle />
             <a 
               href="#contact" 
-              className="px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors shadow-lg shadow-blue-500/30"
+              className="px-5 py-2 text-sm font-bold text-white bg-slate-900 dark:bg-white dark:text-slate-900 rounded-xl hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
             >
               Hire Me
             </a>
@@ -69,7 +74,7 @@ function Navbar() {
 
       {/* MOBILE MENU DROPDOWN */}
       <div 
-        className={`md:hidden absolute w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-white/10 shadow-2xl transition-all duration-300 origin-top ${
+        className={`md:hidden absolute w-full bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 shadow-2xl transition-all duration-300 origin-top ${
           isOpen ? 'opacity-100 scale-y-100 visible' : 'opacity-0 scale-y-0 invisible'
         }`}
       >
@@ -85,11 +90,11 @@ function Navbar() {
               </a>
             </li>
           ))}
-          <li className="pt-4 border-t border-slate-200 dark:border-white/10">
+          <li className="pt-4 border-t border-slate-200 dark:border-slate-800">
             <a 
               href="#contact" 
               onClick={() => setIsOpen(false)}
-              className="inline-block px-8 py-3 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors shadow-lg shadow-blue-500/30"
+              className="inline-block w-full px-8 py-3 text-sm font-bold text-white bg-slate-900 dark:bg-white dark:text-slate-900 rounded-xl hover:shadow-lg transition-all duration-300"
             >
               Hire Me
             </a>
