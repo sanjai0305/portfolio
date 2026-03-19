@@ -12,13 +12,14 @@ import SkillGame from "./components/SkillGame";
 import Contact from "./components/Contact";
 import ContactForm from "./components/ContactForm";
 import Terminal from "./components/Terminal";
+import AIChatbot from './components/AIChatbot'; // 🟢 Chatbot is back!
 
 function App() {
   // State to toggle between standard portfolio and terminal mode
   const [isTerminalMode, setIsTerminalMode] = useState(false);
 
   return (
-    // 🟢 Upgraded to support Light/Dark mode transitions globally
+    // Upgraded to support Light/Dark mode transitions globally
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 font-sans antialiased selection:bg-blue-200 dark:selection:bg-blue-500/30 selection:text-blue-900 dark:selection:text-blue-200 scroll-smooth flex flex-col relative transition-colors duration-300">
       
       {/* Mode Toggle Button - Adapts to Light/Dark Mode */}
@@ -31,7 +32,7 @@ function App() {
 
       {isTerminalMode ? (
         /* --- TERMINAL MODE VIEW --- */
-        <div className="pt-20 md:pt-0"> {/* Padding to prevent button overlap on mobile */}
+        <div className="pt-20 md:pt-0">
           <Terminal />
         </div>
       ) : (
@@ -42,7 +43,6 @@ function App() {
 
           <Navbar />
           
-          {/* 🟢 Reordered for the ultimate narrative flow */}
           <main className="flex-grow w-full">
             <Hero />
             <About />
@@ -70,6 +70,9 @@ function App() {
               Built with <span className="text-blue-500 animate-pulse">♥</span> using React & Tailwind CSS
             </p>
           </footer>
+          
+          {/* 🟢 Floating Global Components */}
+          <AIChatbot />
         </>
       )}
     </div>
