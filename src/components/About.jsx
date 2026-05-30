@@ -7,7 +7,7 @@ function About() {
     {
       icon: <BrainCircuit className="w-7 h-7" />,
       title: "AI & ML Focus",
-      desc: "Pursuing B.Tech with a deep dive into building data-driven, intelligent systems and predictive models.",
+      desc: "Pursuing B.E with a deep dive into building data-driven, intelligent systems and predictive models.",
       gradient: "from-purple-500 to-fuchsia-500",
       textColor: "text-purple-600 dark:text-purple-400",
       glowColor: "group-hover:shadow-purple-500/20 group-hover:border-purple-500/50"
