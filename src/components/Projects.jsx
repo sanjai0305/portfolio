@@ -15,22 +15,26 @@ function Projects() {
 
   const projects = [
     {
-      name: "Quiz Management System",
-      shortDesc: "A dynamic web-based quiz system with robust backend APIs.",
-      techStack: ["React.js", "Node.js", "Express", "MongoDB"],
-      link: "https://github.com/sanjai0305/Quiz_Management_System",
+      name: "Smart Trip Planner",
+      shortDesc: "An intelligent travel companion that generates customized itineraries and optimizes travel routes.",
+      techStack: ["React.js", "Node.js", "Tailwind CSS", "API Integration"],
+      link: "#", // Add your github link here
       liveDemo: "#",
-      image: "https://images.unsplash.com/photo-1606326514690-71a5cc4f4c7d?q=80&w=800&auto=format&fit=crop", 
-      problem: "Educational institutions needed an automated way to distribute and grade assessments without manual overhead.",
+      image: "https://images.unsplash.com/photo-1488646953014-85cb8a14d728?q=80&w=800&auto=format&fit=crop", 
+      problem: "Travelers spend countless hours researching destinations, managing budgets, and manually plotting out daily schedules across multiple websites.",
       features: [
-        "Role-based access control (Admin/Student dashboards).",
-        "Dynamic quiz generation with randomized questions.",
-        "Real-time automated grading and analytics."
+        "Automated, customized daily itinerary generation.",
+        "Interactive route planning and destination mapping.",
+        "Collaborative group trip planning and budget tracking."
       ],
-      badge: null // No hackathon badge
+      // 🟢 NEW: Odoo SNS Hackathon Badge
+      badge: {
+        text: "Odoo SNS Hackathon (May 9)",
+        color: "bg-amber-500/10 text-amber-600 border-amber-500/20 dark:text-amber-400 dark:border-amber-500/30"
+      }
     },
     {
-      name: "Smart Crowd Management", // Updated name based on your prompt
+      name: "Smart Crowd Management",
       shortDesc: "AI-powered crowd monitoring and alert system for public safety.",
       techStack: ["Python", "Machine Learning", "OpenCV", "TensorFlow"],
       link: "https://github.com/sanjai0305/crowdguardai-v1-",
@@ -42,7 +46,6 @@ function Projects() {
         "Machine Learning models to estimate crowd density.",
         "Automated threshold alerts sent to authorities."
       ],
-      // 🟢 NEW: Hackathon Badge details
       badge: {
         text: "Built at PSG iTech Hackathon",
         color: "bg-blue-500/10 text-blue-500 border-blue-500/20"
@@ -61,7 +64,6 @@ function Projects() {
         "Feature extraction using TF-IDF vectorization.",
         "High accuracy trained classifiers (SVM, Naive Bayes)."
       ],
-      // 🟢 NEW: Hackathon Badge details
       badge: {
         text: "National Hackathon Project",
         color: "bg-emerald-500/10 text-emerald-500 border-emerald-500/20"
@@ -139,7 +141,7 @@ function Projects() {
               {/* Internal Hover Glow */}
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
 
-              {/* 🟢 HACKATHON BADGE */}
+              {/* HACKATHON BADGE */}
               {project.badge && (
                 <div className={`absolute top-0 right-0 px-4 py-1.5 rounded-bl-2xl border-b border-l text-xs font-bold flex items-center gap-1.5 z-20 ${project.badge.color}`}>
                   <Trophy className="w-3.5 h-3.5" />
@@ -174,7 +176,7 @@ function Projects() {
         </motion.div>
       </div>
 
-      {/* 🚀 SMART PROJECT DETAILS MODAL */}
+      {/* SMART PROJECT DETAILS MODAL */}
       <AnimatePresence>
         {selectedProject && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-hidden">
@@ -208,7 +210,7 @@ function Projects() {
                     <img 
                         src={selectedProject.image} 
                         alt={selectedProject.name} 
-                        className="w-full h-full object-cover object-top"
+                        className="w-full h-full object-cover object-center"
                     />
                 ) : (
                     <div className="flex flex-col items-center justify-center gap-4 text-slate-400">
