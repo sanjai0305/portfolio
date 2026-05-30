@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Github, ExternalLink, FolderGit2, X, Target, Cpu, Image, Trophy } from 'lucide-react';
+import { Github, ExternalLink, FolderGit2, X, Target, Cpu, Image, Trophy, Network } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+
+// Import the architecture diagram from your assets folder
+import quotationArch from '../assets/quotation-arch.png';
 
 function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [showArchitecture, setShowArchitecture] = useState(false);
 
+  // Reset scroll and architecture view when modal opens/closes
   useEffect(() => {
     if (selectedProject) {
       document.body.style.overflow = 'hidden';
+      setShowArchitecture(false);
     } else {
       document.body.style.overflow = 'unset';
     }
@@ -33,11 +39,29 @@ function Projects() {
       }
     },
     {
+      name: "Quotation Generator Web",
+      shortDesc: "A scalable, production-ready quotation generation system for businesses.",
+      techStack: ["React.js", "Tailwind CSS", "Vercel", "GitOps"],
+      link: "https://github.com/visionxnxtgen2026/Quotation-web",
+      liveDemo: "https://quotation-web-wheat.vercel.app/",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop", 
+      problem: "Creating professional, customized quotations manually takes time and is prone to formatting errors.",
+      features: [
+        "Dynamic PDF generation and formatting.",
+        "Real-time preview of the quotation.",
+        "Automated CI/CD deployment pipeline via Vercel."
+      ],
+      statusBadges: [
+        "https://img.shields.io/badge/Vercel-Deployed-success?logo=vercel&style=flat-square",
+        "https://img.shields.io/github/last-commit/visionxnxtgen2026/Quotation-web?style=flat-square&logo=github&color=blue"
+      ],
+      architectureImg: quotationArch
+    },
+    {
       name: "Smart Crowd Management",
       shortDesc: "AI-powered crowd monitoring and alert system for public safety.",
       techStack: ["Python", "Machine Learning", "OpenCV", "TensorFlow"],
       link: "https://github.com/sanjai0305/crowdguardai-v1-",
-      // 🟢 UPDATED: Added live demo link from the crowdguardai-v1- repo screenshot
       liveDemo: "https://resplendent-torrone-4f84e9.netlify.app",
       image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop",
       problem: "Large gatherings are prone to stampedes. Manual surveillance is too slow to detect critical density levels before incidents occur.",
@@ -56,7 +80,6 @@ function Projects() {
       shortDesc: "NLP-based sentiment classification model categorizing text data efficiently.",
       techStack: ["Python", "NLP", "Scikit-Learn", "Pandas"],
       link: "https://github.com/sanjai0305/sentiment-analysis",
-      // 🟢 UPDATED: Added live demo link from the sentiment-analysis repo screenshot
       liveDemo: "https://sentiment-analysis-one-delta.vercel.app",
       image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop",
       problem: "Businesses struggle to manually process customer reviews to understand overall brand sentiment.",
@@ -160,13 +183,22 @@ function Projects() {
               </div>
 
               {/* Tech Stack Pills */}
-              <div className="flex flex-wrap gap-2 mb-8 relative z-10">
+              <div className="flex flex-wrap gap-2 mb-4 relative z-10">
                 {project.techStack.slice(0, 3).map((tech, i) => (
                   <span key={i} className="px-3 py-1.5 text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-lg border border-slate-200 dark:border-slate-700 group-hover:border-blue-500/30 transition-colors duration-300">
                     {tech}
                   </span>
                 ))}
               </div>
+
+              {/* CI/CD Status Badges on Cards */}
+              {project.statusBadges && (
+                <div className="flex flex-wrap gap-2 mb-8 relative z-10">
+                  {project.statusBadges.map((badgeUrl, i) => (
+                    <img key={i} src={badgeUrl} alt="Status Badge" className="h-5" />
+                  ))}
+                </div>
+              )}
 
               <div className="mt-auto pt-5 border-t border-slate-100 dark:border-slate-800/50 text-blue-600 dark:text-blue-400 text-sm font-bold flex items-center justify-between group-hover:translate-x-1 transition-transform relative z-10">
                 <span>View Full Details</span>
@@ -301,7 +333,40 @@ function Projects() {
                       Live Demo
                     </a>
                   )}
+
+                  {/* Architecture Toggle Button */}
+                  {selectedProject.architectureImg && (
+                    <button 
+                      onClick={() => setShowArchitecture(!showArchitecture)}
+                      className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-4 bg-purple-600/10 text-purple-600 dark:text-purple-400 rounded-xl font-bold hover:bg-purple-600/20 transition-all duration-300"
+                    >
+                      <Network className="w-5 h-5" />
+                      {showArchitecture ? "Hide Architecture" : "View Architecture"}
+                    </button>
+                  )}
                 </div>
+
+                {/* Architecture Diagram Display Section */}
+                <AnimatePresence>
+                  {showArchitecture && selectedProject.architectureImg && (
+                    <motion.div 
+                      initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                      animate={{ opacity: 1, height: 'auto', marginTop: 32 }}
+                      exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                      className="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 p-6"
+                    >
+                      <h4 className="text-xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                        <Network className="w-5 h-5 text-purple-500" />
+                        System Architecture
+                      </h4>
+                      <img 
+                        src={selectedProject.architectureImg} 
+                        alt={`${selectedProject.name} Architecture`} 
+                        className="w-full h-auto rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm" 
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
               </div>
             </motion.div>
