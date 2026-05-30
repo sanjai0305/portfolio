@@ -5,9 +5,10 @@ import { MessageSquare, X, Send, Bot, User, Sparkles } from 'lucide-react';
 // Common style for clickable links inside the bot's message bubble
 const linkStyle = "text-blue-600 dark:text-blue-400 font-bold hover:underline transition-all";
 
-// 🟢 STEP 1: Knowledge Base - Upgraded to support JSX (Clickable Links)
+// 🟢 STEP 1: Knowledge Base - Upgraded with Greetings and JSX Links
 const SANJAI_DATA = {
   intro: "Hi! I'm Sanjai's AI Assistant. I can tell you about his projects, skills, and experience. What would you like to know?",
+  greeting: "Hello there! 👋 I'm Sanjai's AI Assistant. How can I help you today? You can ask me about his GitHub, LinkedIn, skills, or projects!",
   skills: "Sanjai is a pro in Full Stack (React, Node.js), AI/ML (Python, Scikit-Learn, NLP), and DevOps (Docker, CI/CD).",
   projects: (
     <span>
@@ -47,9 +48,12 @@ function AIChatbot() {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // 🟢 STEP 2: Smart Response Logic - Upgraded keywords
+  // 🟢 STEP 2: Smart Response Logic - Now with Greetings!
   const getBotResponse = (userText) => {
     const text = userText.toLowerCase();
+    
+    // Greeting detection (matches exactly hi, hii, hello, hey, etc.)
+    if (/\b(hi|hii|hiii|hello|hey|greetings)\b/i.test(text)) return SANJAI_DATA.greeting;
     
     if (text.includes("linkedin")) return SANJAI_DATA.linkedin;
     if (text.includes("github") || text.includes("git")) return SANJAI_DATA.github;
@@ -135,7 +139,7 @@ function AIChatbot() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder="Ask about Sanjai (e.g. 'github', 'projects')..."
+                  placeholder="Ask about Sanjai (e.g. 'hi', 'github')..."
                   className="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl py-3 pl-4 pr-12 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all dark:text-white"
                 />
                 <button 
