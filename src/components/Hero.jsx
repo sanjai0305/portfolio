@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { ArrowRight, Download, Github, Linkedin, Mail, FileText, Volume2, Square } from 'lucide-react';
@@ -9,16 +9,46 @@ import resumePDF from '../assets/resume.pdf';
 
 function Hero() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef(null);
 
-  const toggleAudio = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
+  // Web Speech API Integration
+  const handleListenIntro = () => {
+    if ('speechSynthesis' in window) {
+      if (isPlaying) {
+        window.speechSynthesis.cancel();
+        setIsPlaying(false);
+      } else {
+        const introText = "Hi, I'm Sanjai R. I am an AI and Machine Learning student passionate about Full Stack Development and DevOps. I specialize in building scalable web applications, intelligent systems, and seamless deployment pipelines. Let's create something exceptional.";
+        
+        const utterance = new SpeechSynthesisUtterance(introText);
+        
+        utterance.rate = 0.9; 
+        utterance.pitch = 1;  
+        
+        const voices = window.speechSynthesis.getVoices();
+        const englishVoice = voices.find(voice => voice.lang.includes('en'));
+        if (englishVoice) {
+          utterance.voice = englishVoice;
+        }
+
+        utterance.onend = () => setIsPlaying(false);
+        utterance.onerror = () => setIsPlaying(false);
+
+        setIsPlaying(true);
+        window.speechSynthesis.speak(utterance);
+      }
     } else {
-      audioRef.current.play();
+      alert("Sorry, your browser doesn't support text-to-speech!");
     }
-    setIsPlaying(!isPlaying);
   };
+
+  // Cleanup speech synthesis if user leaves the page
+  useEffect(() => {
+    return () => {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -33,13 +63,6 @@ function Hero() {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center px-6 pt-32 pb-20 overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
       
-      {/* Hidden Audio Element */}
-      <audio 
-        ref={audioRef} 
-        src="/intro.mp3" 
-        onEnded={() => setIsPlaying(false)}
-      />
-
       {/* 🟢 Minimalist Deep Ambient Lighting (No Grid) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         {/* Soft top-left ambient light */}
@@ -126,7 +149,7 @@ function Hero() {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={toggleAudio}
+                onClick={handleListenIntro}
                 className={`w-full sm:w-auto group flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl font-semibold transition-all duration-300 border
                   ${isPlaying 
                     ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-500/30 shadow-md shadow-indigo-500/10" 
