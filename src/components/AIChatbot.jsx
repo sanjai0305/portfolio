@@ -6,7 +6,7 @@ import { MessageSquare, X, Send, Bot, User, Sparkles } from 'lucide-react';
 const SANJAI_DATA = {
   intro: "Hi! I'm Sanjai's AI Assistant. I can tell you about his projects, skills, and experience. What would you like to know?",
   skills: "Sanjai is a pro in Full Stack (React, Node.js), AI/ML (Python, Scikit-Learn, NLP), and DevOps (Docker, CI/CD).",
-  projects: "His top projects are: 1. Quiz Management System (MERN), 2. CrowdGuard AI (Computer Vision), and 3. Sentiment Analysis (NLP).",
+  projects: "His top projects are: 1. Smart Trip Planner (MERN), 2. CrowdGuard AI (Computer Vision), and 3. Sentiment Analysis (NLP).",
   contact: "You can reach Sanjai at sanjaim0940r@gmail.com or find him on LinkedIn as 'sanjai0426'.",
   experience: "Sanjai has a strong roadmap moving from AI/ML foundations towards becoming a DevSecOps Architect.",
   default: "That's interesting! I'm specifically trained on Sanjai's professional background. Try asking about his 'skills', 'projects', or 'contact'!"
