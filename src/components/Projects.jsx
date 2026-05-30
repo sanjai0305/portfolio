@@ -18,8 +18,10 @@ function Projects() {
       name: "Smart Trip Planner",
       shortDesc: "An intelligent travel companion that generates customized itineraries and optimizes travel routes.",
       techStack: ["React.js", "Node.js", "Tailwind CSS", "API Integration"],
-      link: "#", // Add your github link here
-      liveDemo: "#",
+      // 🟢 UPDATED: Exact GitHub repo link from your screenshot
+      link: "https://github.com/sanjai0305/Trip-Planner-Hackathon", 
+      // 🟢 UPDATED: Vercel live demo link from your screenshot's About section
+      liveDemo: "https://trip-planner-hackathon.vercel.app",
       image: "https://images.unsplash.com/photo-1488646953014-85cb8a14d728?q=80&w=800&auto=format&fit=crop", 
       problem: "Travelers spend countless hours researching destinations, managing budgets, and manually plotting out daily schedules across multiple websites.",
       features: [
@@ -27,7 +29,6 @@ function Projects() {
         "Interactive route planning and destination mapping.",
         "Collaborative group trip planning and budget tracking."
       ],
-      // 🟢 NEW: Odoo SNS Hackathon Badge
       badge: {
         text: "Odoo SNS Hackathon (May 9)",
         color: "bg-amber-500/10 text-amber-600 border-amber-500/20 dark:text-amber-400 dark:border-amber-500/30"
