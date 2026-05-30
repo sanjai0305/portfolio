@@ -94,16 +94,21 @@ function About() {
         <motion.div 
           variants={itemVariants} 
           whileHover={{ y: -5 }}
-          className="max-w-5xl mx-auto bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl border border-slate-200 dark:border-slate-800 p-8 md:p-12 rounded-[2.5rem] text-center mb-16 shadow-lg hover:shadow-2xl transition-all duration-500 relative overflow-hidden group"
+          className="max-w-5xl mx-auto bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl border border-slate-200 dark:border-slate-800 p-8 md:p-12 rounded-[2.5rem] flex flex-col items-center justify-center text-center mb-16 shadow-lg hover:shadow-2xl transition-all duration-500 relative overflow-hidden group"
         >
           {/* Subtle hover gradient sweep */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 dark:via-white/5 to-transparent -translate-x-[100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
           
-          <Sparkles className="w-8 h-8 mx-auto mb-6 text-blue-500 dark:text-blue-400 opacity-50" />
+          {/* Sparkles Icon */}
+          <Sparkles className="w-8 h-8 mb-6 text-blue-500/60 dark:text-blue-400/60 relative z-10" />
           
-          <p className="text-slate-700 dark:text-slate-300 leading-relaxed text-lg md:text-2xl font-medium relative z-10">
-            I am a B.E. <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-400 dark:to-pink-400 font-bold">Artificial Intelligence & Machine Learning</span> student passionate about <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-400 font-bold">Full Stack Development</span> and <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500 dark:from-orange-400 dark:to-amber-400 font-bold">DevOps</span>. 
-            <br className="hidden md:block my-6" />
+          {/* Top Sentence */}
+          <p className="text-slate-700 dark:text-slate-200 leading-relaxed text-lg md:text-xl lg:text-2xl font-medium relative z-10 max-w-4xl mx-auto">
+            I am a B.E. <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-pink-500 dark:from-fuchsia-400 dark:to-pink-400 font-bold">Artificial Intelligence & Machine Learning</span> student passionate about <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-400 font-bold">Full Stack Development</span> and <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500 dark:from-orange-400 dark:to-amber-400 font-bold">DevOps</span>.
+          </p>
+          
+          {/* Bottom Sentence */}
+          <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-base md:text-lg lg:text-xl font-medium relative z-10 mt-4 md:mt-5 max-w-4xl mx-auto">
             I enjoy building scalable web applications, integrating AI solutions, and deploying them using modern cloud and DevOps technologies.
           </p>
         </motion.div>
