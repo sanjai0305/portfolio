@@ -18,9 +18,7 @@ function Projects() {
       name: "Smart Trip Planner",
       shortDesc: "An intelligent travel companion that generates customized itineraries and optimizes travel routes.",
       techStack: ["React.js", "Node.js", "Tailwind CSS", "API Integration"],
-      // 🟢 UPDATED: Exact GitHub repo link from your screenshot
       link: "https://github.com/sanjai0305/Trip-Planner-Hackathon", 
-      // 🟢 UPDATED: Vercel live demo link from your screenshot's About section
       liveDemo: "https://trip-planner-hackathon.vercel.app",
       image: "https://images.unsplash.com/photo-1488646953014-85cb8a14d728?q=80&w=800&auto=format&fit=crop", 
       problem: "Travelers spend countless hours researching destinations, managing budgets, and manually plotting out daily schedules across multiple websites.",
@@ -39,7 +37,8 @@ function Projects() {
       shortDesc: "AI-powered crowd monitoring and alert system for public safety.",
       techStack: ["Python", "Machine Learning", "OpenCV", "TensorFlow"],
       link: "https://github.com/sanjai0305/crowdguardai-v1-",
-      liveDemo: "#",
+      // 🟢 UPDATED: Added live demo link from the crowdguardai-v1- repo screenshot
+      liveDemo: "https://resplendent-torrone-4f84e9.netlify.app",
       image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop",
       problem: "Large gatherings are prone to stampedes. Manual surveillance is too slow to detect critical density levels before incidents occur.",
       features: [
@@ -57,7 +56,8 @@ function Projects() {
       shortDesc: "NLP-based sentiment classification model categorizing text data efficiently.",
       techStack: ["Python", "NLP", "Scikit-Learn", "Pandas"],
       link: "https://github.com/sanjai0305/sentiment-analysis",
-      liveDemo: "#",
+      // 🟢 UPDATED: Added live demo link from the sentiment-analysis repo screenshot
+      liveDemo: "https://sentiment-analysis-one-delta.vercel.app",
       image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop",
       problem: "Businesses struggle to manually process customer reviews to understand overall brand sentiment.",
       features: [
