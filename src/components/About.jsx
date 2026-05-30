@@ -52,7 +52,7 @@ function About() {
   return (
     <section id="about" className="py-24 px-6 bg-slate-50 dark:bg-slate-950 relative overflow-hidden transition-colors duration-500">
       
-      {/* 🟢 Premium Deep Ambient Lighting (No Grid) */}
+      {/* Premium Deep Ambient Lighting (No Grid) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <motion.div 
           animate={{ x: [0, -50, 50, 0], y: [0, 50, -50, 0] }}
@@ -102,9 +102,9 @@ function About() {
           <Sparkles className="w-8 h-8 mx-auto mb-6 text-blue-500 dark:text-blue-400 opacity-50" />
           
           <p className="text-slate-700 dark:text-slate-300 leading-relaxed text-lg md:text-2xl font-medium relative z-10">
-            I am an aspiring <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-400 font-bold">Full Stack Developer</span> and <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500 dark:from-orange-400 dark:to-amber-400 font-bold">DevOps Engineer</span> currently pursuing my B.E in <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-400 dark:to-pink-400 font-bold">Artificial Intelligence and Machine Learning</span>. 
+            I am a B.E. <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-400 dark:to-pink-400 font-bold">Artificial Intelligence & Machine Learning</span> student passionate about <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-400 font-bold">Full Stack Development</span> and <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500 dark:from-orange-400 dark:to-amber-400 font-bold">DevOps</span>. 
             <br className="hidden md:block my-6" />
-            My expertise lies in bridging the gap between intelligent algorithms and robust web architecture. I specialize in building highly scalable web applications, integrating complex AI solutions, and deploying these systems using modern, efficient DevOps practices. 
+            I enjoy building scalable web applications, integrating AI solutions, and deploying them using modern cloud and DevOps technologies.
           </p>
         </motion.div>
 
