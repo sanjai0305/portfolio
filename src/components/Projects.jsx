@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Github, ExternalLink, FolderGit2, X, Target, Cpu, Image, Trophy, Network } from 'lucide-react';
+import { Github, ExternalLink, FolderGit2, X, Target, Cpu, Image, Trophy, Network, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Import the architecture diagram from your assets folder
@@ -22,16 +22,17 @@ function Projects() {
   const projects = [
     {
       name: "Smart Trip Planner",
-      shortDesc: "An intelligent travel companion that generates customized itineraries and optimizes travel routes.",
-      techStack: ["React.js", "Node.js", "Tailwind CSS", "API Integration"],
+      shortDesc: "A modern full-stack travel planning web application built using the MERN stack.",
+      techStack: ["React.js", "Node.js", "MongoDB", "Express.js", "JWT"],
       link: "https://github.com/sanjai0305/Trip-Planner-Hackathon", 
-      liveDemo: "https://trip-planner-hackathon.vercel.app",
+      // Changed liveDemo to apkLink pointing to your public folder
+      apkLink: "/smart-trip-planner.apk", 
       image: "https://images.unsplash.com/photo-1488646953014-85cb8a14d728?q=80&w=800&auto=format&fit=crop", 
       problem: "Travelers spend countless hours researching destinations, managing budgets, and manually plotting out daily schedules across multiple websites.",
       features: [
-        "Automated, customized daily itinerary generation.",
-        "Interactive route planning and destination mapping.",
-        "Collaborative group trip planning and budget tracking."
+        "Dynamic daily itinerary planner and trip management.",
+        "Integrated packing checklists and trip notes module.",
+        "Secure user profiles with JWT Authentication."
       ],
       badge: {
         text: "Odoo SNS Hackathon (May 9)",
@@ -322,15 +323,30 @@ function Projects() {
                     Source Code
                   </a>
                   
-                  {selectedProject.liveDemo !== "#" && (
+                  {/* LIVE DEMO BUTTON (Only shows if liveDemo exists) */}
+                  {selectedProject.liveDemo && selectedProject.liveDemo !== "#" && (
                     <a 
-                    href={selectedProject.liveDemo} 
+                      href={selectedProject.liveDemo} 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-4 border-2 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-xl font-bold hover:bg-slate-50 dark:hover:bg-slate-900 hover:-translate-y-1 transition-all duration-300"
                     >
                       <ExternalLink className="w-5 h-5" />
                       Live Demo
+                    </a>
+                  )}
+
+                  {/* DIRECT DOWNLOAD APK BUTTON (Only shows if apkLink exists) */}
+                  {selectedProject.apkLink && (
+                    <a 
+                      href={selectedProject.apkLink} 
+                      download // This attribute triggers the direct download
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-4 border-2 border-emerald-500 text-emerald-600 dark:text-emerald-500 rounded-xl font-bold hover:bg-emerald-50 dark:hover:bg-emerald-950/30 hover:-translate-y-1 transition-all duration-300"
+                    >
+                      <Download className="w-5 h-5" />
+                      Download APK
                     </a>
                   )}
 
